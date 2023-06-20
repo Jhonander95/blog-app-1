@@ -1,11 +1,10 @@
 <nav class=" navbar navbar-expand-lg fixed-top ">
   <div class="container">
     <div class=" collapse navbar-collapse justify-content-center ">
-      <ul class=" navbar-nav ">
-        <li class="nav-item ml-3 "> <a class="nav-link" href="/"> Home</a> </li>
-        <li class="nav-item ml-3 "> <a class="nav-link" href=""> Blog</a> </li>
-        <li class="nav-item ml-3 "> <a class="nav-link" href="https://jhonandersontellez.dev" target="_blank"> Jhonanderson Téllez</a> </li>
+      <ul class=" navbar-nav " *ngFor="let cat of categories" >
+        <li class="nav-item ml-3 "> <a class="nav-link"  [routerLink]="['/category', cat.data?.category?.category, cat?.id ]" >{{cat.data?.category?.category}} </a> </li>
       </ul>
     </div>
   </div>
 </nav>
+ 
