@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { map } from 'rxjs/operators';
 
-//import firebase from 'firebase/app';
 import * as firebase from 'firebase/app';
-
+import { Post } from '../models/post';
+import { from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -61,22 +61,35 @@ export class PostService {
     )
   }
 
+  LoadById(postId: any) {
+    const postRef = this.db.doc(`post/${postId}`).ref;
+    return postRef.get().then((doc) => {
+      if (doc.exists) {
+        const post = doc.data() as Post;
+        const updatedViews = post.views + 1;
+        this.countViews(postId, updatedViews);
+      }
+      return doc.data();
+    });
+  }
+  
+  countViews(postId: any, views: any) {
+    const postRef = this.db.doc(`post/${postId}`).ref;
+    return postRef.update({ views: views });
+  }
+
+/* 
   LoadById( postId: any ) {
     return this.db.doc(`post/${postId}`).valueChanges();
-  }
-
-  countViews( postId: any,  ){
-    /* const viewsCount = {
-      views: firebase.
-    } */
-
-    //this.db.collection('post').doc(postId).update(viewsCount.views);
-
-   /*  const postRef = this.db.doc(`post/${postId}`).ref;
-    return postRef.update({ views: firebase.firestore.FieldValue.increment(1) }); */
 
   }
 
+
+  countViews( postId: any, views: any  ){
+    const postRef = this.db.doc(`post/${postId}`);
+    return postRef.update({ views: views + 1 });
+  }
+ */
 
 
 }
