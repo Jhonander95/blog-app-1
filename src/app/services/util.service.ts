@@ -16,6 +16,10 @@ export class UtilService {
       { type: 'required', message: 'El email es obligatorio' },
       { type: 'pattern', message: 'El formato del email es inválido' }
     ],
+    comment: [
+      { type: 'required', message: 'El comentario es obligatorio' },
+      { type: 'pattern', message: 'El comentario debe tener más de 4 caracteres' }
+    ],
   }
 
   getValidationMessages(): object {

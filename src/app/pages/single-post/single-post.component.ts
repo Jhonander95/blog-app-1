@@ -12,7 +12,7 @@ export class SinglePostComponent implements OnInit {
 
   post!: any;
   postSimilars!: any[];
-  
+  idPost: string = '';
 
   constructor( private postService: PostService, private route: ActivatedRoute ){}
 
@@ -26,16 +26,17 @@ export class SinglePostComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(val =>{
       this.postService.LoadById(val?.['id']).then( (post: any) => {
+        this.idPost = val?.['id'];
         this.postService.LoadById(val?.['id']).then( (post: any) => {
           this.post = post;
+          console.log(this.idPost);
           this.postService.LoadSimilar(this.post.category.categoryId).subscribe(posts => {
             this.postSimilars = posts;
-            console.log(this.postSimilars);
           });
         });
       });
     });
 
   }
-
+ 
 }
