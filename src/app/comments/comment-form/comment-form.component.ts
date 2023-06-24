@@ -50,7 +50,6 @@ constructor(  private formBuilder: FormBuilder,
   }
 
   ngOnInit(): void {
-    console.log(this.idPost);
 
   }
 
@@ -59,10 +58,13 @@ constructor(  private formBuilder: FormBuilder,
     const data = {
       name: form?.name,
       comment: form?.comment,
-      idPost: this.idPost
+      idPost: this.idPost,
+      createdAt: new Date()
     }
 
     this.commentsServices.createComment(data);
+    this.form.reset();
+
   }
 
 }

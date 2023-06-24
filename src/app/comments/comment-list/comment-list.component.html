@@ -1,51 +1,21 @@
 <div class="card my-5 pb-5 shadow-effect">
   <div class="card-body">
-    <h3 class="py-3">Comments (17.966)</h3>
+    <h3 class="py-3">Comentarios ({{ comments.length }})</h3>
+    <h4 *ngIf="comments.length == 0" >No hay comentarios, sé el primero en dejar uno.</h4>
 
-    <div class="comment-box mt-3">
-      <h6 class="mb-0">John Doe</h6>
-      <small>LAST UPDATE - APR 20, 2023</small>
-
-      <div class="my-3">
-        Luffy is amazing, he is made of rubber, and he is very strong.
+    <ng-container *ngIf="comments.length > 0" >
+      <div class="comment-box mt-3" *ngFor="let comment of comments"  >
+        <h6 class="mb-0"> {{comment?.data?.name}} </h6>
+        <small> {{comment?.data?.createdAt.toMillis() | date }}  </small> 
+  
+        <div class="my-3">
+          {{comment?.data?.comment}}
+        </div>
+        <hr>
+  
       </div>
+    </ng-container>
 
-      <a href="#" class="m-4" >Replic </a>
-      <a href="#" class="mt-1 ml-3" > View Replic</a>
-
-      <hr>
-
-    </div>
-
-    <div class="comment-box mt-3">
-      <h6 class="mb-0">John Doe</h6>
-      <small>LAST UPDATE - APR 20, 2023</small>
-
-      <div class="my-3">
-        Luffy is amazing, he is made of rubber, and he is very strong.
-      </div>
-
-      <a href="#" class="m-4" >Replic </a>
-      <a href="#" class="mt-1 ml-3" > View Replic</a>
-
-      <hr>
-
-    </div>
-
-    <div class="comment-box mt-3">
-      <h6 class="mb-0">John Doe</h6>
-      <small>LAST UPDATE - APR 20, 2023</small>
-
-      <div class="my-3">
-        Luffy is amazing, he is made of rubber, and he is very strong.
-      </div>
-
-      <a href="#" class="m-4" >Replic </a>
-      <a href="#" class="mt-1 ml-3" > View Replic</a>
-
-      <hr>
-
-    </div>
-
+    
   </div>
 </div>

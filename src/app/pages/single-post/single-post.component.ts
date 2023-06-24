@@ -29,14 +29,13 @@ export class SinglePostComponent implements OnInit {
         this.idPost = val?.['id'];
         this.postService.LoadById(val?.['id']).then( (post: any) => {
           this.post = post;
-          console.log(this.idPost);
           this.postService.LoadSimilar(this.post.category.categoryId).subscribe(posts => {
             this.postSimilars = posts;
           });
         });
       });
     });
-
+ 
   }
  
 }

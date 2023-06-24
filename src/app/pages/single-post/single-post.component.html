@@ -1,9 +1,9 @@
 <div class="container text-dark">
   <div class="row">
-    <div class=" col-sm-12 col-md-8 col-lg-9 ">
+    <div class=" col-sm-12 col-lg-12 ">
       <div class="card shadow-effect">
         <img
-          src="{{ post.postImgPath }}"
+          src="{{ post?.postImgPath }}"
           alt="Rey pirata" class="card-img-top img-fluid">
         <div class="card-body">
           <small class="bg-light text-dark text-center mr-3"> {{ post.category.category }}  - </small>
@@ -16,12 +16,13 @@
             
           </p>
         </div>
-      </div>
-
+      </div> 
+      
+      <app-comment-list [idPost] = "idPost" ></app-comment-list>
       <app-comment-form [idPost] = "idPost" ></app-comment-form> 
-      <app-comment-list></app-comment-list>
 
     </div>
+    <h3 class="text-center my-3 " > Post Relacionados </h3>
     <div class="col-sm-12 col-md-4 col-lg-3" *ngFor="let postSimilar of postSimilars" >
       <app-post-card [postData]="postSimilar" ></app-post-card>
     </div>
